@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 
+import useCripto from "../hooks/useCrypto";
+
 const Button = styled.button`
   margin-top: 20px;
   font-weight: bold;
@@ -20,8 +22,11 @@ const Button = styled.button`
 `;
 
 const Form = () => {
+  const [currency, SelectCurrency] = useCripto();
+
   return (
     <form>
+      <SelectCurrency />
       <Button type="submit">Calculate</Button>
     </form>
   );
