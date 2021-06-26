@@ -22,7 +22,13 @@ const Button = styled.button`
 `;
 
 const Form = () => {
-  const [currency, SelectCurrency] = useCripto();
+  const CURRENCY = [
+    { code: "USD", name: "US Dollar" },
+    { code: "MXN", name: "Peso Mexicano" },
+    { code: "EUR", name: "Euro" },
+    { code: "ARG", name: "Peso Argentino" },
+  ];
+  const [currency, SelectCurrency] = useCripto("Currency pick", "", CURRENCY);
 
   return (
     <form>
