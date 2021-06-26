@@ -21,7 +21,7 @@ const Image = styled.img`
 
 const Heading = styled.h1`
   color: #fff;
-  font-family: "Helvetica", cursive;
+  font-family: "Fira Code", monospace;
   font-size: 50px;
   font-weight: 700;
   margin-bottom: 50px;
