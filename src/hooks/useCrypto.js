@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-const useCripto = () => {
-  const [state, setState] = useState("");
+const useCripto = (label, initialState, options) => {
+  const [state, setState] = useState(initialState);
 
   const Select = () => (
     <>
-      <label>Currency</label>
+      <label>{label}</label>
       <select>
-        <option value="MXN">Peso Mexicano</option>
+        <option value="">- Select -</option>
+        {options.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.name}
+          </option>
+        ))}
       </select>
     </>
   );
