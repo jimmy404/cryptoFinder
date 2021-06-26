@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import image from "./assets/crypto.png";
 
+import Form from "./components/Form";
+
 const Container = styled.div`
   margin: 0 auto;
   max-width: 900px;
@@ -44,6 +46,7 @@ function App() {
       </div>
       <div>
         <Heading>Crypto finder</Heading>
+        <Form />
       </div>
     </Container>
   );
