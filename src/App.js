@@ -7,6 +7,7 @@ import axios from "axios";
 
 import Form from "./components/Form";
 import Quote from "./components/Quote";
+import Spinner from "./components/Spinner";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -47,6 +48,7 @@ function App() {
   const [currency, setCurrency] = useState("");
   const [crypto, setCrypto] = useState("");
   const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const quoteCrypto = async () => {
@@ -55,10 +57,16 @@ function App() {
       }
       const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${currency}`;
       const result = await axios.get(url);
-      setResult(result.data.DISPLAY[crypto][currency]);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setResult(result.data.DISPLAY[crypto][currency]);
+      }, 2000);
     };
     quoteCrypto();
   }, [currency, crypto]);
+
+  const component = loading ? <Spinner /> : <Quote result={result} />;
 
   return (
     <Container>
@@ -68,7 +76,7 @@ function App() {
       <div>
         <Heading>Crypto finder</Heading>
         <Form setCrypto={setCrypto} setCurrency={setCurrency} />
-        <Quote result={result} />
+        {component}
       </div>
     </Container>
   );
