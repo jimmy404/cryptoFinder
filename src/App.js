@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import styled from "@emotion/styled";
-// import image from "./assets/crypto.png";
 
 import axios from "axios";
 
