@@ -25,7 +25,7 @@ const Quote = ({ result }) => {
   if (Object.keys(result).length === 0) {
     return null;
   }
-  console.log(result);
+
   return (
     <ResultDiv>
       <Price>
