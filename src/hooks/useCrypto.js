@@ -22,7 +22,6 @@ const Select = styled.select`
 `;
 
 const useCrypto = (label, initialState, options) => {
-  console.log(options);
   const [state, setState] = useState(initialState);
 
   const SelectCrypto = () => (
@@ -30,11 +29,11 @@ const useCrypto = (label, initialState, options) => {
       <Label>{label}</Label>
       <Select onChange={(e) => setState(e.target.value)} value={state}>
         <option value="">- Select -</option>
-        {/* {options.map((option) => (
-          <option key={option.code} value={option.code}>
-            {option.name}
+        {options.map((option) => (
+          <option key={option.CoinInfo.Id} value={option.CoinInfo.Name}>
+            {option.CoinInfo.FullName}
           </option>
-        ))} */}
+        ))}
       </Select>
     </>
   );
