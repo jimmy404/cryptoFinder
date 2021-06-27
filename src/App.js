@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import styled from "@emotion/styled";
-import image from "./assets/crypto.png";
+// import image from "./assets/crypto.png";
 
 import axios from "axios";
 
@@ -71,7 +71,10 @@ function App() {
   return (
     <Container>
       <div>
-        <Image src={image} alt="Crypto image background" />
+        <Image
+          src="https://raw.githubusercontent.com/juanpablogdl/cripto_react/master/src/cryptomonedas.png"
+          alt="Crypto image background"
+        />
       </div>
       <div>
         <Heading>Crypto finder</Heading>
