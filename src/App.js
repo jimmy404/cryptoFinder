@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import styled from "@emotion/styled";
 import image from "./assets/crypto.png";
 
@@ -39,6 +41,15 @@ const Heading = styled.h1`
 `;
 
 function App() {
+  const [currency, setCurrency] = useState("");
+  const [crypto, setCrypto] = useState("");
+
+  useEffect(() => {
+    if (currency === "") {
+      return;
+    }
+  }, [currency, crypto]);
+
   return (
     <Container>
       <div>
@@ -46,7 +57,7 @@ function App() {
       </div>
       <div>
         <Heading>Crypto finder</Heading>
-        <Form />
+        <Form setCrypto={setCrypto} setCurrency={setCurrency} />
       </div>
     </Container>
   );
