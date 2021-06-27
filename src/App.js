@@ -1,7 +1,12 @@
+import { useState, useEffect } from "react";
+
 import styled from "@emotion/styled";
 import image from "./assets/crypto.png";
 
+import axios from "axios";
+
 import Form from "./components/Form";
+import Quote from "./components/Quote";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -39,6 +44,22 @@ const Heading = styled.h1`
 `;
 
 function App() {
+  const [currency, setCurrency] = useState("");
+  const [crypto, setCrypto] = useState("");
+  const [result, setResult] = useState({});
+
+  useEffect(() => {
+    const quoteCrypto = async () => {
+      if (currency === "") {
+        return;
+      }
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${currency}`;
+      const result = await axios.get(url);
+      setResult(result.data.DISPLAY[crypto][currency]);
+    };
+    quoteCrypto();
+  }, [currency, crypto]);
+
   return (
     <Container>
       <div>
@@ -46,7 +67,8 @@ function App() {
       </div>
       <div>
         <Heading>Crypto finder</Heading>
-        <Form />
+        <Form setCrypto={setCrypto} setCurrency={setCurrency} />
+        <Quote result={result} />
       </div>
     </Container>
   );
