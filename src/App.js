@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import image from "./assets/crypto.png";
 
+import axios from "axios";
+
 import Form from "./components/Form";
 
 const Container = styled.div`
@@ -45,9 +47,15 @@ function App() {
   const [crypto, setCrypto] = useState("");
 
   useEffect(() => {
-    if (currency === "") {
-      return;
-    }
+    const quoteCrypto = async () => {
+      if (currency === "") {
+        return;
+      }
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${currency}`;
+      const result = await axios.get(url);
+      console.log(result.data.DISPLAY[crypto][currency]);
+    };
+    quoteCrypto();
   }, [currency, crypto]);
 
   return (
